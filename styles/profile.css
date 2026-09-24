@@ -1,0 +1,77 @@
+/* W4 - Perfil. Offsets measured from the 1360x780 mockup frame. */
+.pf-page h1,
+.pf-page p,
+.pf-page ul { margin: 0; padding: 0; }
+.pf-page ul { list-style: none; }
+
+.pf-avatar {
+  position: absolute;
+  left: 423.25px;
+  top: 103.25px;
+  width: 73.5px;
+  height: 73.5px;
+  padding-top: 2.4px;
+  border: 1.5px solid var(--prim);
+  border-radius: 50%;
+  background: var(--prim-l);
+  color: var(--prim);
+  font-size: 16px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+
+.pf-name {
+  position: absolute;
+  left: 520px;
+  top: calc(134px - 0.8633em);
+  font-size: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pf-email {
+  position: absolute;
+  left: 520px;
+  top: calc(160px - 0.8633em);
+  font-size: 14px;
+  color: var(--g1);
+  white-space: nowrap;
+}
+
+.pf-options {
+  position: absolute;
+  left: 419.25px;
+  top: 229.25px;
+  width: 521.5px;
+}
+
+.brand-page .pf-option {
+  position: absolute;
+  left: 0;
+  width: 521.5px;
+  height: 57.5px;
+  border: 1.5px solid var(--g2);
+  border-radius: 8px;
+  background: var(--white);
+  box-sizing: border-box;
+}
+.brand-page .pf-option:hover { border-color: var(--prim); background: var(--g4); }
+.brand-page .pf-option:active { background: var(--prim-l); }
+
+.pf-option-label {
+  position: absolute;
+  left: 20px;
+  top: calc(33.25px - 0.8633em);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.pf-option-chevron {
+  position: absolute;
+  right: 23.25px;
+  top: calc(33.25px - 0.8633em);
+  font-size: 15px;
+  color: var(--g2);
+}

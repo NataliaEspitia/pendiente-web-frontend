@@ -9,7 +9,6 @@ const state = {
     verification: 'scan'
   },
   dropped: [],
-  profileOpen: null
 };
 
 const nav = (route) => {
@@ -102,23 +101,6 @@ function editor() {
     </main>`;
 }
 
-function profile() {
-  const options = [
-    ['account','Cuenta','Nombre, correo y preferencias básicas de la cuenta.'],
-    ['notifications','Notificaciones','Opciones visuales del prototipo; no se conectan a un servicio real.'],
-    ['privacy','Privacidad y datos de la cámara','La imagen se procesa en el dispositivo y no se envía a un servidor.'],
-    ['logout','Cerrar sesión','Acción demostrativa: no existe autenticación real en este frontend.']
-  ];
-  return `
-    <main class="shell">
-      ${topbar('profile')}
-      <section class="content profile-card">
-        <div class="profile-head"><div class="profile-avatar">CR</div><div><h2>Camila Rojas</h2><p>camila.rojas@correo.com</p></div></div>
-        ${options.map(([key,label,detail]) => `<button class="profile-option" data-profile-option="${key}"><span>${label}</span><span>›</span></button><div class="profile-detail ${state.profileOpen===key?'open':''}" data-detail="${key}">${detail}</div>`).join('')}
-      </section>
-    </main>`;
-}
-
 function render() {
   const route = (location.hash || '#planner').slice(1);
   app.innerHTML = route === 'editor' ? editor() : route === 'progress' ? progress() : route === 'profile' ? profile() : planner();
@@ -158,7 +140,6 @@ function bind() {
   document.querySelector('#deleteAlarm')?.addEventListener('click', () => { notify('Alarma eliminada (demo)'); setTimeout(() => nav('planner'), 250); });
   document.querySelector('#changePhoto')?.addEventListener('click', () => notify('Selector de foto simulado'));
   document.querySelector('#removePhoto')?.addEventListener('click', () => notify('Foto quitada en el prototipo'));
-  document.querySelectorAll('[data-profile-option]').forEach(btn => btn.addEventListener('click', () => { state.profileOpen = state.profileOpen === btn.dataset.profileOption ? null : btn.dataset.profileOption; render(); }));
 }
 
 window.addEventListener('hashchange', render);
