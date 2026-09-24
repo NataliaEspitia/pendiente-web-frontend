@@ -1,6 +1,6 @@
 # Distribución de pantallas — Web
 
-La entrega web se divide en cuatro issues, uno por pantalla del wireframe.
+La entrega web se divide en seis issues, uno por pantalla (tres por integrante).
 
 ## Natalia
 
@@ -19,23 +19,33 @@ La entrega web se divide en cuatro issues, uno por pantalla del wireframe.
 - Opciones de verificación.
 - Guardar/eliminar y navegación de regreso.
 
+### W6: pendiente
+- Pantalla por definir (pendiente).
+
 ## Santiago
 
-### W3 — Mi progreso
+### W3: Mi progreso
 - Cumplimiento 68%.
 - Visualización de últimas 4 semanas.
 - Tarjeta de sugerencia con Aceptar/Descartar.
 - Ranking de alarmas más pospuestas.
 
-### W4 — Perfil
+### W4: Perfil
 - Datos de usuario.
 - Cuenta.
 - Notificaciones.
 - Privacidad y datos de cámara.
 - Cerrar sesión.
+- La opción Privacidad y datos de la cámara abre W5.
+
+### W5: Verificación
+- Versión web del selector de verificación del mockup mobile M5.
+- Opciones Ninguna, Movimiento, Escanear objeto y Operación matemática (radios seleccionables, solo visuales).
+- Nota de privacidad: la imagen se procesa en el teléfono y no se guarda ni se envía.
+- Enlace de regreso a Perfil.
 
 ## Criterios comunes
-- La pantalla debe corresponder al wireframe.
+- La pantalla debe corresponder al mockup (pixel perfect a 1360 x 780).
 - Debe ser navegable desde el resto del prototipo.
 - Los componentes interactivos deben responder visualmente.
 - No se requiere backend ni funcionalidad real.
