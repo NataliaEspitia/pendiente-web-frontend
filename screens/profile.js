@@ -7,7 +7,7 @@
   const options = [
     { key: 'account', label: 'Cuenta', message: 'Datos de la cuenta (fuera del alcance del prototipo)' },
     { key: 'notifications', label: 'Notificaciones', message: 'Preferencias de notificaciones (fuera del alcance del prototipo)' },
-    { key: 'privacy', label: 'Privacidad y datos de la cámara', message: 'Privacidad y datos de la cámara (fuera del alcance del prototipo)' },
+    { key: 'privacy', label: 'Privacidad y datos de la cámara', route: 'verification' },
     { key: 'logout', label: 'Cerrar sesión', message: 'Cerrar sesión (fuera del alcance del prototipo)' }
   ];
 

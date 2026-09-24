@@ -103,7 +103,7 @@ function editor() {
 
 function render() {
   const route = (location.hash || '#planner').slice(1);
-  app.innerHTML = route === 'editor' ? editor() : route === 'progress' ? progress() : route === 'profile' ? profile() : planner();
+  app.innerHTML = route === 'editor' ? editor() : route === 'progress' ? progress() : route === 'profile' ? profile() : route === 'verification' ? verification() : planner();
   bind();
 }
 
