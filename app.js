@@ -8,7 +8,6 @@ const state = {
     days: new Set(['M1', 'J']),
     verification: 'scan'
   },
-  suggestionVisible: true,
   dropped: [],
   profileOpen: null
 };
@@ -103,23 +102,6 @@ function editor() {
     </main>`;
 }
 
-function progress() {
-  const bars = [[48,75,93,68],[58,72,90,82],[74,86,95,80],[84,91,96,90]];
-  return `
-    <main class="shell">
-      ${topbar('progress')}
-      <section class="content">
-        <div class="progress-top">
-          <div><strong>Cumplimiento</strong><div class="big-number">68%</div><div class="progress-track"><div class="progress-fill"></div></div></div>
-          <div><strong>Últimas 4 semanas</strong><div class="bars">${bars.map((g,i)=>`<div><div class="bar-group">${g.map(h=>`<div class="bar" style="height:${h}px"></div>`).join('')}</div><small>S${i+1}</small></div>`).join('')}</div></div>
-        </div>
-        ${state.suggestionVisible ? `<div class="suggestion"><div><div class="eyebrow">SUGERENCIA</div><p>Los martes posponés 3 veces la alarma de las 06:30. ¿La movemos a las 07:00?</p></div><div class="suggestion-actions"><button class="primary" id="acceptSuggestion">Aceptar</button><button class="text-button" id="discardSuggestion">Descartar</button></div></div>` : ''}
-        <h3>Alarmas que más posponés</h3>
-        <table><tbody><tr><td><strong>06:30</strong></td><td>Levantarme</td><td>12 posposiciones</td></tr><tr><td><strong>06:00</strong></td><td>Gimnasio</td><td>7 posposiciones</td></tr><tr><td><strong>06:30</strong></td><td>Remedios de mamá</td><td>1 posposición <span class="photo-badge">FOTO</span></td></tr></tbody></table>
-      </section>
-    </main>`;
-}
-
 function profile() {
   const options = [
     ['account','Cuenta','Nombre, correo y preferencias básicas de la cuenta.'],
@@ -176,8 +158,6 @@ function bind() {
   document.querySelector('#deleteAlarm')?.addEventListener('click', () => { notify('Alarma eliminada (demo)'); setTimeout(() => nav('planner'), 250); });
   document.querySelector('#changePhoto')?.addEventListener('click', () => notify('Selector de foto simulado'));
   document.querySelector('#removePhoto')?.addEventListener('click', () => notify('Foto quitada en el prototipo'));
-  document.querySelector('#acceptSuggestion')?.addEventListener('click', () => { state.suggestionVisible = false; notify('Sugerencia aceptada'); render(); });
-  document.querySelector('#discardSuggestion')?.addEventListener('click', () => { state.suggestionVisible = false; notify('Sugerencia descartada'); render(); });
   document.querySelectorAll('[data-profile-option]').forEach(btn => btn.addEventListener('click', () => { state.profileOpen = state.profileOpen === btn.dataset.profileOption ? null : btn.dataset.profileOption; render(); }));
 }
 
