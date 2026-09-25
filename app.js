@@ -21,52 +21,51 @@ const notify = (message) => {
   setTimeout(() => toast.classList.remove('show'), 1800);
 };
 
-function topbar(active) {
-  return `
-    <header class="topbar">
-      <div class="brand">Pendiente</div>
-      <nav class="tabs" aria-label="Navegación principal">
-        <button class="tab ${active === 'planner' ? 'active' : ''}" data-nav="planner">Planificador</button>
-        <button class="tab ${active === 'progress' ? 'active' : ''}" data-nav="progress">Mi progreso</button>
-      </nav>
-      <div class="top-actions">
-        ${active === 'planner' ? '<span>Cumplimiento 68%</span>' : ''}
-        <button class="avatar" aria-label="Perfil" data-nav="profile">CR</button>
-      </div>
-    </header>`;
-}
+const W1_DAYS = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+const W1_HOURS = ['05:00', '06:00', '07:00', '08:00', '...', '18:00', '19:00'];
+const W1_ROW = 88;
+const W1_COL = 148;
 
 function planner() {
+  // Event blocks per day: row = hour row, frac = offset inside the row (0.5 = half hour).
   const events = {
-    0: [{top: 70, title: 'Levantarme'}],
-    1: [{top: 70, title: 'Levantarme'}, {top: 124, title: 'Remedios', photo: true}],
-    2: [{top: 70, title: 'Levantarme'}],
-    3: [{top: 70, title: 'Levantarme'}, {top: 124, title: 'Remedios', photo: true}],
-    4: [{top: 70, title: 'Levantarme'}, {top: 458, title: 'Sacar la ropa', photo: true}],
+    0: [{row: 1, frac: 0, title: 'Levantarme'}],
+    1: [{row: 1, frac: 0, title: 'Levantarme'}, {row: 1, frac: 0.5, title: 'Remedios', photo: true}],
+    2: [{row: 1, frac: 0, title: 'Levantarme'}],
+    3: [{row: 1, frac: 0, title: 'Levantarme'}, {row: 1, frac: 0.5, title: 'Remedios', photo: true}],
+    4: [{row: 1, frac: 0, title: 'Levantarme'}, {row: 5, frac: 0.5, title: 'Sacar la ropa', photo: true}],
     5: [], 6: []
   };
+  const block = (e) => {
+    const top = e.top ?? W1_ROW * (e.row + e.frac) + 4;
+    return `<div class="w1-event${e.photo ? ' w1-event--photo' : ''}${e.dropped ? ' w1-event--dropped' : ''}" style="top:${top}px"><strong>${e.title}</strong>${e.photo ? '<small>FOTO</small>' : ''}</div>`;
+  };
   for (const d of state.dropped) events[d.day].push({top: d.top, title: d.title, dropped: true});
-  const dayCols = ['L','M','M','J','V','S','D'].map((day, i) => `
-    <div class="day-column" data-day="${i}">
-      ${(events[i] || []).map(e => `<div class="event ${e.dropped ? 'drop-event' : ''}" style="top:${e.top}px"><strong>${e.title}</strong>${e.photo ? '<small>FOTO</small>' : ''}</div>`).join('')}
-    </div>`).join('');
+  const cards = [
+    ['Gimnasio', '06:00', false],
+    ['Remedios de mamá', '06:30', true],
+    ['Sacar la ropa', '18:30', true]
+  ];
   return `
-    <main class="shell">
-      ${topbar('planner')}
-      <section class="content planner-layout">
-        <aside>
-          <h2 class="sidebar-title">Mis alarmas</h2>
-          <div class="alarm-card" draggable="true" data-alarm="Gimnasio"><strong>Gimnasio</strong><small>06:00</small></div>
-          <div class="alarm-card" draggable="true" data-alarm="Remedios de mamá"><span class="photo-badge">FOTO</span><strong>Remedios de mamá</strong><small>06:30</small></div>
-          <div class="alarm-card" draggable="true" data-alarm="Sacar la ropa"><span class="photo-badge">FOTO</span><strong>Sacar la ropa</strong><small>18:30</small></div>
-          <button class="secondary full" data-nav="editor">+ Nueva alarma</button>
-          <p class="helper">Arrastra una alarma a la grilla</p>
-        </aside>
-        <div class="week">
-          <div class="week-header">${['L','M','M','J','V','S','D'].map(d => `<div class="day-head">${d}</div>`).join('')}</div>
-          <div class="week-grid">${dayCols}</div>
-        </div>
-      </section>
+    <main class="brand-page w1-page">
+      ${brandTopbar('planner')}
+      <span class="w1-kpi">Cumplimiento 68%</span>
+      <h2 class="w1-title">Mis alarmas</h2>
+      ${cards.map(([name, time, photo], i) => `
+        <div class="alarm-card w1-card" style="top:${117.25 + i * 80}px" draggable="true" data-alarm="${name}" role="button" tabindex="0">
+          <strong>${name}</strong><small>${time}</small>
+          ${photo ? '<span class="fototag w1-card-tag">FOTO</span>' : ''}
+        </div>`).join('')}
+      <button class="w1-new" data-nav="editor">+ Nueva alarma</button>
+      <p class="w1-helper">Arrastra una alarma a la grilla</p>
+      ${W1_DAYS.map((d, i) => `<span class="w1-day${i === 1 ? ' is-today' : ''}" style="left:${300 + i * W1_COL}px">${d}</span>`).join('')}
+      <div class="w1-grid">
+        ${W1_HOURS.map((h, j) => `<span class="w1-hline" style="top:${j * W1_ROW}px"></span><span class="w1-hour" style="top:${j * W1_ROW}px">${h}</span>`).join('')}
+        ${W1_DAYS.map((_, i) => `
+          <div class="day-column w1-col" data-day="${i}" style="left:${i * W1_COL}px">
+            ${events[i].map(block).join('')}
+          </div>`).join('')}
+      </div>
     </main>`;
 }
 
@@ -158,7 +157,7 @@ function bind() {
       const title = e.dataTransfer.getData('text/plain');
       if (!title) return;
       const bounds = col.getBoundingClientRect();
-      const top = Math.max(10, Math.min(540, e.clientY - bounds.top - 20));
+      const top = Math.max(4, Math.min(W1_ROW * W1_HOURS.length - 38, e.clientY - bounds.top - 17));
       state.dropped.push({day: Number(col.dataset.day), top, title});
       notify(`${title} añadida a la grilla`);
       render();

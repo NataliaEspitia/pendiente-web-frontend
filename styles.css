@@ -79,108 +79,6 @@ input:focus-visible {
 }
 
 /* -------------------------------------------------------------------------- */
-/* TOP BAR                                                                    */
-/* -------------------------------------------------------------------------- */
-
-.topbar {
-  height: 74px;
-
-  display: grid;
-  grid-template-columns: 180px 1fr 220px;
-
-  align-items: center;
-  gap: 24px;
-
-  padding: 0 32px;
-
-  background: var(--bg);
-
-  border-bottom: 1px solid var(--gray-3);
-}
-
-.brand {
-  font-size: 20px;
-  font-weight: 700;
-
-  color: var(--primary);
-}
-
-.tabs {
-  display: flex;
-  gap: 34px;
-
-  height: 100%;
-
-  align-items: stretch;
-}
-
-.tab {
-  border: 0;
-  border-bottom: 4px solid transparent;
-
-  padding: 0 2px;
-
-  background: transparent;
-
-  color: var(--gray-1);
-
-  font-weight: 400;
-}
-
-.tab:hover {
-  color: var(--primary);
-}
-
-.tab.active {
-  color: var(--primary);
-
-  font-weight: 700;
-
-  border-color: var(--primary);
-}
-
-.top-actions {
-  display: flex;
-
-  justify-content: flex-end;
-  align-items: center;
-
-  gap: 16px;
-
-  color: var(--gray-1);
-}
-
-.avatar {
-  width: 38px;
-  height: 38px;
-
-  border: 1px solid var(--primary);
-  border-radius: 50%;
-
-  background: var(--primary-light);
-
-  display: grid;
-  place-items: center;
-
-  color: var(--primary);
-
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.avatar:hover {
-  background: var(--white);
-}
-
-/* -------------------------------------------------------------------------- */
-/* CONTENIDO GENERAL                                                          */
-/* -------------------------------------------------------------------------- */
-
-.content {
-  padding: 28px 32px 36px;
-}
-
-/* -------------------------------------------------------------------------- */
 /* BOTONES                                                                    */
 /* -------------------------------------------------------------------------- */
 
@@ -240,207 +138,176 @@ input:focus-visible {
 }
 
 /* -------------------------------------------------------------------------- */
-/* W1 — PLANIFICADOR                                                          */
+/* W1 - PLANIFICADOR                                                          */
+/* Geometry from gen_mockups.py w1(), frame 1360x780. Text is placed by its   */
+/* baseline: top = baseline - 0.8633em (Inter, line-height 1).                */
 /* -------------------------------------------------------------------------- */
 
-.planner-layout {
-  display: grid;
+.w1-page { height: 780px; min-height: 780px; overflow: hidden; }
 
-  grid-template-columns: 260px 1fr;
-
-  gap: 24px;
+.w1-kpi {
+  position: absolute;
+  right: 100px;
+  top: calc(40px - 0.8633em);
+  font-size: 13px;
+  color: var(--g1);
+  white-space: nowrap;
 }
 
-.sidebar-title {
-  margin: 0 0 12px;
-
+.w1-title {
+  position: absolute;
+  left: 24px;
+  top: calc(100px - 0.8633em);
+  margin: 0;
   font-size: 15px;
   font-weight: 700;
-
-  color: var(--ink);
 }
 
-.alarm-card {
-  position: relative;
-
-  margin-bottom: 12px;
-
-  padding: 12px 14px;
-
-  border: 1px solid var(--gray-3);
-  border-radius: 9px;
-
+.w1-card {
+  position: absolute;
+  left: 23.25px;
+  width: 241.5px;
+  height: 67.5px;
+  border: 1.5px solid var(--g2);
+  border-radius: 8px;
   background: var(--white);
-
-  user-select: none;
-
-  transition:
-    border-color 0.15s ease,
-    background 0.15s ease,
-    transform 0.15s ease;
-}
-
-.alarm-card:hover {
-  border-color: var(--primary);
-
-  background: var(--primary-light);
-}
-
-.alarm-card[draggable="true"] {
   cursor: grab;
 }
-
-.alarm-card[draggable="true"]:active {
-  cursor: grabbing;
-
-  transform: scale(0.99);
+.w1-card::before {
+  content: "";
+  position: absolute;
+  left: -0.75px;
+  top: -0.75px;
+  width: 5px;
+  height: 66px;
+  border-radius: 2px;
+  background: var(--prim);
+}
+.w1-card:hover { border-color: var(--prim); }
+.w1-card strong {
+  position: absolute;
+  left: 15.25px;
+  top: calc(25.25px - 0.8633em);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.w1-card small {
+  position: absolute;
+  left: 15.25px;
+  top: calc(47.25px - 0.8633em);
+  font-size: 13px;
+  color: var(--g1);
+}
+.brand-page .w1-card-tag {
+  position: absolute;
+  left: 180.75px;
+  top: 34.75px;
 }
 
-.alarm-card strong {
-  display: block;
-
-  margin-bottom: 4px;
-
+.brand-page .w1-new {
+  position: absolute;
+  left: 23.25px;
+  top: 365.25px;
+  width: 241.5px;
+  height: 43.5px;
+  border: 1.5px solid var(--prim);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--prim);
   font-size: 14px;
   font-weight: 700;
-
-  color: var(--ink);
-}
-
-.alarm-card small {
-  color: var(--gray-1);
-
-  font-size: 12px;
-}
-
-.photo-badge {
-  float: right;
-
-  padding: 2px 5px;
-
-  border: 1px solid var(--accent);
-  border-radius: 3px;
-
-  background: var(--accent-light);
-
-  color: var(--accent-ink);
-
-  font-size: 9px;
-  letter-spacing: 0.5px;
-}
-
-.helper {
-  margin-top: 18px;
-
-  color: var(--gray-2);
-
-  font-size: 12px;
-}
-
-.full {
-  width: 100%;
-}
-
-/* -------------------------------------------------------------------------- */
-/* GRILLA SEMANAL                                                             */
-/* -------------------------------------------------------------------------- */
-
-.week {
-  border-left: 1px solid var(--gray-3);
-}
-
-.week-header {
-  display: grid;
-
-  grid-template-columns: repeat(7, 1fr);
-
-  border-bottom: 1px solid var(--gray-3);
-
-  background: var(--bg);
-}
-
-.day-head {
-  padding: 10px 6px;
-
   text-align: center;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  color: var(--gray-1);
 }
+.brand-page .w1-new:hover { background: var(--prim-l); }
 
-.week-grid {
-  position: relative;
-
-  display: grid;
-
-  grid-template-columns: repeat(7, 1fr);
-
-  min-height: 610px;
-}
-
-.day-column {
-  position: relative;
-
-  border-right: 1px solid var(--gray-3);
-
-  background-image:
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 79px,
-      var(--gray-3) 80px
-    );
-
-  transition: background-color 0.15s ease;
-}
-
-.day-column.drag-over {
-  background-color: var(--primary-light);
-}
-
-.event {
+.w1-helper {
   position: absolute;
-
-  left: 6px;
-  right: 6px;
-
-  min-height: 48px;
-
-  padding: 6px 8px;
-
-  border: 1px solid var(--primary);
-  border-radius: 6px;
-
-  background: var(--primary-light);
-
-  color: var(--ink);
-
+  left: 24px;
+  top: calc(448px - 0.8633em);
+  margin: 0;
   font-size: 12px;
-
-  overflow: hidden;
+  color: var(--g2);
 }
 
-.event strong {
+.w1-day {
+  position: absolute;
+  top: 82px;
+  width: 148px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
   font-weight: 700;
 }
-
-.event small {
-  display: block;
-
-  margin-top: 2px;
-
-  color: var(--accent-ink);
-
-  font-size: 9px;
+.w1-day.is-today {
+  color: var(--white);
+  background: radial-gradient(circle at center, var(--prim) 14px, transparent 14.5px);
 }
 
-.drop-event {
-  background: var(--white);
+.w1-grid {
+  position: absolute;
+  left: 300px;
+  top: 118px;
+  width: 1036px;
+  height: 616px;
+  background: repeating-linear-gradient(to right, var(--g4) 0 1px, transparent 1px 148px);
+  border-right: 1px solid var(--g4);
+  box-sizing: content-box;
+  transform: translateX(-0.5px);
+}
 
-  border-style: dashed;
-  border-color: var(--primary);
+.w1-hline {
+  position: absolute;
+  left: 0;
+  width: 1036px;
+  height: 1px;
+  margin-top: -0.5px;
+  background: var(--g3);
+}
+
+.w1-hour {
+  position: absolute;
+  right: calc(100% + 10px);
+  margin-top: calc(14px - 0.8633em);
+  font-size: 11.5px;
+  color: var(--g2);
+  white-space: nowrap;
+}
+
+.w1-col {
+  position: absolute;
+  top: 0;
+  width: 148px;
+  height: 616px;
+}
+.w1-col.drag-over { background: rgba(58, 91, 199, 0.06); }
+
+.w1-event {
+  position: absolute;
+  left: 4.25px;
+  width: 139.5px;
+  height: 35.5px;
+  margin-top: -0.75px;
+  border: 1.5px solid var(--prim);
+  border-radius: 6px;
+  background: var(--prim-l);
+}
+.w1-event--photo { border-color: var(--accent); background: var(--accent-l); }
+.w1-event--dropped { border-style: dashed; }
+.w1-event strong {
+  position: absolute;
+  left: 7.25px;
+  top: calc(14.25px - 0.8633em);
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+.w1-event small {
+  position: absolute;
+  left: 7.25px;
+  top: calc(27.25px - 0.8633em);
+  font-size: 8.5px;
+  letter-spacing: 1px;
+  color: var(--accent-ink);
 }
 
 /* -------------------------------------------------------------------------- */
