@@ -60,7 +60,7 @@ function planner() {
           <div class="alarm-card" draggable="true" data-alarm="Remedios de mamá"><span class="photo-badge">FOTO</span><strong>Remedios de mamá</strong><small>06:30</small></div>
           <div class="alarm-card" draggable="true" data-alarm="Sacar la ropa"><span class="photo-badge">FOTO</span><strong>Sacar la ropa</strong><small>18:30</small></div>
           <button class="secondary full" data-nav="editor">+ Nueva alarma</button>
-          <p class="helper">Arrastrá una alarma a la grilla</p>
+          <p class="helper">Arrastra una alarma a la grilla</p>
         </aside>
         <div class="week">
           <div class="week-header">${['L','M','M','J','V','S','D'].map(d => `<div class="day-head">${d}</div>`).join('')}</div>
