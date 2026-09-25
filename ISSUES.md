@@ -1,26 +1,29 @@
-# Distribución de pantallas — Web
+# Distribución de pantallas: Web
 
 La entrega web se divide en seis issues, uno por pantalla (tres por integrante).
 
 ## Natalia
 
-### W1 — Planificador semanal
+### W1: Planificador semanal
 - Navegación superior.
 - Lista de alarmas.
 - Cumplimiento 68%.
-- Grilla semanal L–D.
+- Grilla semanal de L a D.
 - Botón `+ Nueva alarma`.
 - Drag & drop demostrativo de alarmas.
 
-### W2 — Editor de alarma
+### W2: Editor de alarma
 - Propósito y hora.
 - Selección de días.
 - Foto de propósito.
 - Opciones de verificación.
 - Guardar/eliminar y navegación de regreso.
 
-### W6: pendiente
-- Pantalla por definir (pendiente).
+### W6: Sonido de la alarma
+- Versión web del selector de sonido del mockup mobile M10.
+- Opciones Radar, Amanecer, Clásico y Suave (radios seleccionables).
+- Control de volumen.
+- Se abre desde la fila Sonido de W2 y regresa al editor con el sonido elegido.
 
 ## Santiago
 
