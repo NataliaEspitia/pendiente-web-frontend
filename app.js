@@ -60,7 +60,7 @@ function planner() {
           <div class="alarm-card" draggable="true" data-alarm="Remedios de mamá"><span class="photo-badge">FOTO</span><strong>Remedios de mamá</strong><small>06:30</small></div>
           <div class="alarm-card" draggable="true" data-alarm="Sacar la ropa"><span class="photo-badge">FOTO</span><strong>Sacar la ropa</strong><small>18:30</small></div>
           <button class="secondary full" data-nav="editor">+ Nueva alarma</button>
-          <p class="helper">Arrastrá una alarma a la grilla</p>
+          <p class="helper">Arrastra una alarma a la grilla</p>
         </aside>
         <div class="week">
           <div class="week-header">${['L','M','M','J','V','S','D'].map(d => `<div class="day-head">${d}</div>`).join('')}</div>
@@ -95,6 +95,24 @@ function editor() {
             </div>
             <p class="privacy">La imagen se procesa en tu equipo; no se guarda ni se envía.</p>
           </div>
+          <div class="field">
+          <span class="section-label">
+            Sonido
+          </span>
+
+          <button
+            type="button"
+            class="sound-summary"
+            data-nav="sound"
+          >
+            <span>
+              ${window.getSelectedSound?.() || 'Radar'}
+            </span>
+            <span aria-hidden="true">
+              ›
+            </span>
+          </button>
+        </div>
           <button class="secondary danger" id="deleteAlarm">Eliminar alarma</button>
         </div>
       </section>
@@ -103,7 +121,25 @@ function editor() {
 
 function render() {
   const route = (location.hash || '#planner').slice(1);
-  app.innerHTML = route === 'editor' ? editor() : route === 'progress' ? progress() : route === 'profile' ? profile() : route === 'verification' ? verification() : planner();
+
+  app.innerHTML =
+    route === 'editor'
+      ? editor()
+
+      : route === 'sound'
+        ? soundScreen()
+
+      : route === 'progress'
+        ? progress()
+
+      : route === 'profile'
+        ? profile()
+
+      : route === 'verification'
+        ? verification()
+
+      : planner();
+
   bind();
 }
 
