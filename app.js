@@ -95,6 +95,24 @@ function editor() {
             </div>
             <p class="privacy">La imagen se procesa en tu equipo; no se guarda ni se envía.</p>
           </div>
+          <div class="field">
+          <span class="section-label">
+            Sonido
+          </span>
+
+          <button
+            type="button"
+            class="sound-summary"
+            data-nav="sound"
+          >
+            <span>
+              ${window.getSelectedSound?.() || 'Radar'}
+            </span>
+            <span aria-hidden="true">
+              ›
+            </span>
+          </button>
+        </div>
           <button class="secondary danger" id="deleteAlarm">Eliminar alarma</button>
         </div>
       </section>
@@ -103,7 +121,25 @@ function editor() {
 
 function render() {
   const route = (location.hash || '#planner').slice(1);
-  app.innerHTML = route === 'editor' ? editor() : route === 'progress' ? progress() : route === 'profile' ? profile() : route === 'verification' ? verification() : planner();
+
+  app.innerHTML =
+    route === 'editor'
+      ? editor()
+
+      : route === 'sound'
+        ? soundScreen()
+
+      : route === 'progress'
+        ? progress()
+
+      : route === 'profile'
+        ? profile()
+
+      : route === 'verification'
+        ? verification()
+
+      : planner();
+
   bind();
 }
 

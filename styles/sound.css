@@ -1,0 +1,326 @@
+/* -------------------------------------------------------------------------- */
+/* W6 — SONIDO DE LA ALARMA                                                   */
+/* -------------------------------------------------------------------------- */
+
+.sound-page {
+  background: var(--white);
+}
+
+.sound-header {
+  height: 70px;
+
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+
+  align-items: center;
+
+  padding: 0 32px;
+
+  background: var(--bg);
+
+  border-bottom: 1px solid var(--gray-3);
+}
+
+.sound-header h1 {
+  margin: 0;
+
+  text-align: center;
+
+  color: var(--ink);
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sound-back {
+  justify-self: start;
+}
+
+.sound-header-spacer {
+  width: 160px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* LAYOUT                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.sound-content {
+  display: grid;
+
+  grid-template-columns:
+    minmax(540px, 720px)
+    minmax(260px, 340px);
+
+  justify-content: center;
+
+  gap: 56px;
+
+  padding: 54px 48px 70px;
+}
+
+.sound-card {
+  overflow: hidden;
+
+  border: 1px solid var(--gray-3);
+  border-radius: 12px;
+
+  background: var(--white);
+}
+
+/* -------------------------------------------------------------------------- */
+/* ENCABEZADO DE LA TARJETA                                                   */
+/* -------------------------------------------------------------------------- */
+
+.sound-section-heading {
+  padding: 26px 28px 20px;
+
+  border-bottom: 1px solid var(--gray-3);
+}
+
+.sound-section-heading h2 {
+  margin: 0 0 7px;
+
+  color: var(--ink);
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sound-section-heading p {
+  margin: 0;
+
+  color: var(--gray-1);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------- */
+/* OPCIONES                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.sound-options {
+  display: grid;
+}
+
+.sound-option {
+  min-height: 62px;
+
+  display: grid;
+
+  grid-template-columns: 30px 1fr auto;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 24px;
+
+  border: 0;
+  border-bottom: 1px solid var(--gray-3);
+
+  background: var(--white);
+
+  text-align: left;
+
+  color: var(--ink);
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.sound-option:hover {
+  background: var(--bg);
+}
+
+.sound-option.selected {
+  background: var(--primary-light);
+
+  color: var(--primary);
+}
+
+.sound-radio {
+  width: 20px;
+  height: 20px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1.5px solid var(--gray-2);
+  border-radius: 50%;
+
+  background: var(--white);
+}
+
+.sound-option.selected .sound-radio {
+  border-color: var(--primary);
+}
+
+.sound-radio-dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+}
+
+.sound-option-label {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.sound-option.selected .sound-option-label {
+  font-weight: 700;
+}
+
+.sound-selected-label {
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  background: var(--white);
+
+  color: var(--primary);
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* VOLUMEN                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.sound-volume-section {
+  padding: 30px 28px 34px;
+}
+
+.sound-volume-heading {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.sound-volume-heading label {
+  color: var(--ink);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sound-volume-heading span {
+  color: var(--primary);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sound-slider {
+  width: 100%;
+
+  cursor: pointer;
+
+  accent-color: var(--primary);
+}
+
+.sound-volume-labels {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 7px;
+
+  color: var(--gray-2);
+
+  font-size: 11px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* PREVIEW                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.sound-preview {
+  align-self: start;
+
+  min-height: 270px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 34px;
+
+  border: 1px solid var(--gray-3);
+  border-radius: 12px;
+
+  background: var(--bg);
+
+  text-align: center;
+}
+
+.sound-preview-icon {
+  width: 72px;
+  height: 72px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 22px;
+
+  border-radius: 50%;
+
+  background: var(--primary-light);
+
+  color: var(--primary);
+
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.sound-preview-label {
+  margin: 0 0 7px;
+
+  color: var(--gray-1);
+
+  font-size: 12px;
+}
+
+.sound-preview strong {
+  color: var(--ink);
+
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.sound-preview-help {
+  max-width: 220px;
+
+  margin: 18px 0 0;
+
+  color: var(--gray-2);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVE                                                                 */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .sound-content {
+    grid-template-columns: minmax(500px, 1fr) 260px;
+
+    gap: 28px;
+
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
