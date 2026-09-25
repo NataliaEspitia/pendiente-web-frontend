@@ -43,6 +43,10 @@
 
 .sound-back {
   justify-self: start;
+  min-height: 0;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .sound-header-spacer {
