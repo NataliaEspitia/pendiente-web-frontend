@@ -71,50 +71,44 @@ function planner() {
 
 function editor() {
   const days = [['L','L'],['M1','M'],['M2','M'],['J','J'],['V','V'],['S','S'],['D','D']];
+  const options = [['none','Ninguna'],['motion','Movimiento'],['scan','Escanear objeto'],['math','Operación matemática']];
   return `
-    <main class="shell">
-      <header class="editor-header">
-        <button class="text-button" data-nav="planner">← Volver</button>
-        <h1>Editar alarma</h1>
-        <button class="primary" id="saveAlarm">Guardar</button>
+    <main class="brand-page w2-page">
+      <header class="w2-bar">
+        <button class="w2-back" data-nav="planner">← Volver</button>
+        <h1 class="w2-heading">Editar alarma</h1>
+        <button class="w2-save" id="saveAlarm">Guardar</button>
       </header>
-      <section class="editor-grid">
-        <div class="editor-pane">
-          <div class="field"><label for="purpose">¿Para qué es?</label><input id="purpose" type="text" value="${state.editor.purpose}" /></div>
-          <div class="field"><label for="time">Hora (formato 24 h)</label><input id="time" class="time-input" type="time" value="${state.editor.time}" /></div>
-          <div class="field"><span class="section-label">Repetir</span><div class="day-chips">${days.map(([key,label]) => `<button class="day-chip ${state.editor.days.has(key) ? 'selected' : ''}" data-day-chip="${key}">${label}</button>`).join('')}</div></div>
+      <label class="w2-label" for="purpose" style="top:calc(120px - 0.8633em)">¿Para qué es?</label>
+      <input id="purpose" class="w2-input w2-input--purpose" type="text" value="${state.editor.purpose}" />
+      <label class="w2-label" for="time" style="top:calc(226px - 0.8633em)">Hora (formato 24 h)</label>
+      <input id="time" class="w2-input w2-input--time" type="text" inputmode="numeric" maxlength="5"
+        pattern="([01][0-9]|2[0-3]):[0-5][0-9]" placeholder="HH:MM" aria-describedby="timeHelp" value="${state.editor.time}" />
+      <span id="timeHelp" hidden>Formato de 24 horas, por ejemplo 06:30</span>
+      <span class="w2-label" style="top:calc(336px - 0.8633em)">Repetir</span>
+      <div class="w2-chips" role="group" aria-label="Repetir">
+        ${days.map(([key, label], i) => `<button class="w2-chip${state.editor.days.has(key) ? ' is-on' : ''}" style="left:${i * 52}px" data-day-chip="${key}" aria-pressed="${state.editor.days.has(key)}">${label}</button>`).join('')}
+      </div>
+      <span class="w2-label" style="top:calc(446px - 0.8633em)">Sonido</span>
+      <button type="button" class="w2-sound" data-nav="sound">
+        <span>${window.getSelectedSound?.() || 'Radar'}</span><span aria-hidden="true">›</span>
+      </button>
+      <span class="w2-divider"></span>
+      <span class="w2-label w2-right" style="top:calc(120px - 0.8633em)">Foto de propósito</span>
+      <div class="w2-photo" role="img" aria-label="Foto de propósito: el pastillero de los remedios">
+        <span class="w2-photo-caption">los remedios</span>
+        <div class="w2-pillbox">
+          ${['M','J','S','D'].map(d => `<span class="w2-pill"><b>${d}</b><i></i></span>`).join('')}
         </div>
-        <div class="editor-pane">
-          <div class="field"><span class="section-label">Foto de propósito</span>
-            <div class="photo-row"><div class="photo-placeholder">los remedios</div><div class="photo-actions"><button class="text-button" id="changePhoto">Cambiar</button><button class="text-button" id="removePhoto">Quitar</button></div></div>
-          </div>
-          <div class="field"><span class="section-label">Verificación</span>
-            <div class="radio-list">
-              ${[['none','Ninguna'],['motion','Movimiento'],['scan','Escanear objeto'],['math','Operación matemática']].map(([value,label]) => `<label class="radio-row"><input type="radio" name="verification" value="${value}" ${state.editor.verification === value ? 'checked' : ''}/> ${label}</label>`).join('')}
-            </div>
-            <p class="privacy">La imagen se procesa en tu equipo; no se guarda ni se envía.</p>
-          </div>
-          <div class="field">
-          <span class="section-label">
-            Sonido
-          </span>
-
-          <button
-            type="button"
-            class="sound-summary"
-            data-nav="sound"
-          >
-            <span>
-              ${window.getSelectedSound?.() || 'Radar'}
-            </span>
-            <span aria-hidden="true">
-              ›
-            </span>
-          </button>
-        </div>
-          <button class="secondary danger" id="deleteAlarm">Eliminar alarma</button>
-        </div>
-      </section>
+      </div>
+      <button class="w2-link w2-link--change" id="changePhoto">Cambiar</button>
+      <button class="w2-link w2-link--remove" id="removePhoto">Quitar</button>
+      <span class="w2-label w2-right" style="top:calc(344px - 0.8633em)">Verificación</span>
+      <div class="w2-radios" role="radiogroup" aria-label="Verificación">
+        ${options.map(([value, label], i) => `<label class="w2-radio" style="top:${i * 40}px"><input type="radio" name="verification" value="${value}" ${state.editor.verification === value ? 'checked' : ''}/><span>${label}</span></label>`).join('')}
+      </div>
+      <p class="w2-privacy">La imagen se procesa en tu equipo; no se guarda ni se envía.</p>
+      <button class="w2-delete" id="deleteAlarm">Eliminar alarma</button>
     </main>`;
 }
 
@@ -168,7 +162,7 @@ function bind() {
     state.editor.days.has(key) ? state.editor.days.delete(key) : state.editor.days.add(key);
     render();
   }));
-  document.querySelectorAll('input[name="verification"]').forEach(r => r.addEventListener('change', () => state.editor.verification = r.value));
+  document.querySelectorAll('input[name="verification"]').forEach(r => r.addEventListener('change', () => { state.editor.verification = r.value; render(); }));
   document.querySelector('#purpose')?.addEventListener('input', e => state.editor.purpose = e.target.value);
   document.querySelector('#time')?.addEventListener('input', e => state.editor.time = e.target.value);
   document.querySelector('#saveAlarm')?.addEventListener('click', () => { notify('Cambios guardados en el prototipo'); setTimeout(() => nav('planner'), 250); });
