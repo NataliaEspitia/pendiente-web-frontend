@@ -1,0 +1,141 @@
+/*
+ * W5 - Verificación. Same 1360x780 frame and 520px column as W4 (x = 420);
+ * rows, radios and privacy note follow mockup M5.
+ */
+.vf-page h1,
+.vf-page p { margin: 0; }
+
+.brand-page .vf-back {
+  position: absolute;
+  left: 420px;
+  top: calc(106px - 0.8633em);
+  font-size: 15px;
+  color: var(--prim);
+  white-space: nowrap;
+}
+.brand-page .vf-back:hover { text-decoration: underline; }
+
+.vf-title {
+  position: absolute;
+  left: 420px;
+  top: calc(150px - 0.8633em);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.vf-intro {
+  position: absolute;
+  left: 420px;
+  top: calc(176px - 0.8633em);
+  font-size: 14px;
+  color: var(--g1);
+  white-space: nowrap;
+}
+
+.vf-options {
+  position: absolute;
+  left: 420px;
+  top: 199.25px;
+  width: 520px;
+  height: 312px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-top: 1.5px solid var(--g3);
+  min-width: 0;
+}
+.vf-legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.vf-option {
+  position: absolute;
+  left: 0;
+  margin-top: 19.25px;
+  width: 520px;
+  height: 64px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.vf-option::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 67.25px;
+  width: 520px;
+  height: 1.5px;
+  background: var(--g3);
+}
+.vf-option:hover { background: var(--g4); }
+.vf-option:has(.vf-radio:checked) { background: var(--prim-l); }
+
+.vf-radio {
+  position: absolute;
+  left: 10.25px;
+  top: 12.25px;
+  width: 19.5px;
+  height: 19.5px;
+  margin: 0;
+  border: 1.5px solid var(--g2);
+  border-radius: 50%;
+  background: var(--white);
+  appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.vf-radio:checked {
+  border-color: var(--prim);
+  background: var(--prim);
+  box-shadow: inset 0 0 0 3.75px var(--white);
+}
+
+.vf-label {
+  position: absolute;
+  left: 42px;
+  top: calc(28px - 0.8633em);
+  font-size: 16px;
+  white-space: nowrap;
+}
+.vf-option:has(.vf-radio:checked) .vf-label { color: var(--prim); font-weight: 700; }
+
+.vf-description {
+  position: absolute;
+  left: 42px;
+  top: calc(50px - 0.8633em);
+  font-size: 12.5px;
+  color: var(--g2);
+  white-space: nowrap;
+}
+.vf-option:has(.vf-radio:checked) .vf-description { color: var(--g1); }
+
+.vf-privacy {
+  position: absolute;
+  left: 427.5px;
+  top: 545.5px;
+  width: 505px;
+  height: 85px;
+  border: 1px solid var(--g3);
+  border-radius: 8px;
+  background: var(--g4);
+  box-sizing: border-box;
+}
+.vf-privacy-title,
+.vf-privacy-line {
+  position: absolute;
+  left: 15.5px;
+  white-space: nowrap;
+}
+.vf-privacy-title {
+  top: calc(27.5px - 0.8633em);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--prim);
+}
+.vf-privacy-line { font-size: 12.5px; color: var(--g1); }
+.vf-privacy-line--1 { top: calc(47.5px - 0.8633em); }
+.vf-privacy-line--2 { top: calc(65.5px - 0.8633em); }
