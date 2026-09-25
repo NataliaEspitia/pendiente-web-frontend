@@ -69,16 +69,12 @@ input:focus-visible {
 /* -------------------------------------------------------------------------- */
 
 .shell {
-  width: min(1380px, calc(100vw - 48px));
-  min-height: calc(100vh - 48px);
-
-  margin: 24px auto;
-
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 780px;
+  margin: 0;
   background: var(--white);
-
-  border: 1px solid var(--gray-3);
-  border-radius: 12px;
-
   overflow: hidden;
 }
 
@@ -726,31 +722,6 @@ input[type="time"]:focus {
 
 .toast.show {
   opacity: 1;
-}
-
-/* -------------------------------------------------------------------------- */
-/* RESPONSIVE WEB                                                             */
-/* -------------------------------------------------------------------------- */
-
-@media (max-width: 1100px) {
-  .shell {
-    width: calc(100vw - 24px);
-
-    margin: 12px;
-  }
-
-  .topbar {
-    grid-template-columns: 150px 1fr 160px;
-  }
-
-  .planner-layout {
-    grid-template-columns: 220px 1fr;
-  }
-
-  .editor-pane {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
 }
 
 .sound-summary {
